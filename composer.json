@@ -1,0 +1,22 @@
+{
+  "name": "Kollway/rongcloud",
+  "description": "This package provides a easy way to access RongCloud API.",
+  "keywords": ["rongcloud", "rongyun", "easy-rongcloud", "rongcloud-sdk"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "kollway",
+      "email": "app@kollway.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "kollway\\EasyRongcloud\\": "src/"
+    }
+  }
+}
