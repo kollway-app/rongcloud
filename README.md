@@ -11,7 +11,7 @@ This package provides a easy way to access RongCloud API. (DEV)
 Add this
 
 ```
-"kollway/easy-rongcloud": "dev-master"
+"kollway/rongcloud": "dev-master"
 ```
 
 to your `composer.json`. Then run `composer install` or `composer update`.
