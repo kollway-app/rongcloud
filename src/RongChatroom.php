@@ -99,4 +99,73 @@ class RongChatroom extends Rongcloud
             print_r($e->getMessage());
         }
     }
+
+    /**
+     * 添加禁言聊天室成员 方法
+     * @param $userId 用户 Id。（必传）
+     * @param $chatroomId 聊天室 Id。（必传）
+     * @param $minute 禁言时长，以分钟为单位，最大值为43200分钟。（必传）
+     * @return mixed
+     */
+    public function chatroomUserGagAdd($userId,$chatroomId,$minute) {
+        try{
+            if(empty($userId))
+                throw new Exception('用户 Id 不能为空');
+            if(empty($chatroomId))
+                throw new Exception('聊天室 Id 不能为空');
+            if(empty($minute) || intval($minute)>43200)
+                throw new Exception('禁言时长不能为空,且最大值为43200');
+            $params['userId'] = $userId;
+            $params['chatroomId'] = $chatroomId;
+            $params['minute'] = $minute;
+            $ret = $this->curl('/chatroom/user/gag/add',$params);
+            if(empty($ret))
+                throw new Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    /**
+     * 移除禁言聊天室成员 方法
+     * @param $userId 用户 Id。（必传）
+     * @param $chatroomId 聊天室 Id。（必传）
+     * @return mixed
+     */
+    public function chatroomUserGagRollback($userId,$chatroomId) {
+        try{
+            if(empty($userId))
+                throw new Exception('用户 Id 不能为空');
+            if(empty($chatroomId))
+                throw new Exception('聊天室 Id 不能为空');
+            $params['userId'] = $userId;
+            $params['chatroomId'] = $chatroomId;
+            $ret = $this->curl('/chatroom/user/gag/rollback',$params);
+            if(empty($ret))
+                throw new Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    /**
+     * 查询被禁言聊天室成员 方法
+     * @param $chatroomId 聊天室 Id。（必传）
+     * @return mixed
+     */
+    public function chatroomUserGagList($chatroomId) {
+        try{
+            if(empty($chatroomId))
+                throw new Exception('聊天室 Id 不能为空');
+            $params['chatroomId'] = $chatroomId;
+            $ret = $this->curl('/chatroom/user/gag/list',$params);
+            if(empty($ret))
+                throw new Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
 }
