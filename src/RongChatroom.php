@@ -168,4 +168,26 @@ class RongChatroom extends Rongcloud
             print_r($e->getMessage());
         }
     }
+    /**
+     * 添加聊天室成员 方法
+     * @param $userId 用户 Id。（必传）
+     * @param $chatroomId 聊天室 Id。（必传）
+     * @return mixed
+     */
+    public function chatRoomUserAdd($userId,$chatroomId){
+        try{
+            if(empty($userId))
+                throw new Exception('用户 Id 不能为空');
+            if(empty($chatroomId))
+                throw new Exception('聊天室 Id 不能为空');
+            $params['userId'] = $userId;
+            $params['chatroomId'] = $chatroomId;
+            $ret = $this->curl('/chatroom/join',$params);
+            if(empty($ret))
+                throw new Exception('请求失败');
+            return $ret;
+        }catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
 }
