@@ -35,13 +35,13 @@ class RongMessage extends Rongcloud
     {
         try {
             if (empty($fromUserId))
-                throw new Exception('发送人用户 Id 不能为空');
+                throw new MessageException('发送人用户 Id 不能为空');
             if (empty($toUserId))
-                throw new Exception('接收用户 Id 不能为空');
+                throw new MessageException('接收用户 Id 不能为空');
             if (empty($objectName))
-                throw new Exception('消息类型 不能为空');
+                throw new MessageException('消息类型 不能为空');
             if (empty($content))
-                throw new Exception('发送消息内容 不能为空');
+                throw new MessageException('发送消息内容 不能为空');
 
             $params = [
                 'fromUserId'  => $fromUserId,
@@ -54,10 +54,10 @@ class RongMessage extends Rongcloud
 
             $ret = $this->curl('/message/publish', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new MessageException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
+        } catch (MessageException $e) {
             print_r($e->getMessage());
         }
     }
@@ -129,13 +129,13 @@ class RongMessage extends Rongcloud
     {
         try {
             if (empty($fromUserId))
-                throw new Exception('发送人用户 Id 不能为空');
+                throw new MessageException('发送人用户 Id 不能为空');
             if (empty($toChatroomId))
-                throw new Exception('接收聊天室Id 不能为空');
+                throw new MessageException('接收聊天室Id 不能为空');
             if (empty($objectName))
-                throw new Exception('消息类型 不能为空');
+                throw new MessageException('消息类型 不能为空');
             if (empty($content))
-                throw new Exception('发送消息内容 不能为空');
+                throw new MessageException('发送消息内容 不能为空');
             $params = [
                 'fromUserId'   => $fromUserId,
                 'objectName'   => $objectName,
@@ -145,10 +145,10 @@ class RongMessage extends Rongcloud
 
             $ret = $this->curl('/message/chatroom/publish', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new MessageException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
+        } catch (MessageException $e) {
             print_r($e->getMessage());
         }
     }
@@ -170,13 +170,13 @@ class RongMessage extends Rongcloud
     {
         try {
             if (empty($fromUserId))
-                throw new Exception('发送人用户 Id 不能为空');
+                throw new MessageException('发送人用户 Id 不能为空');
             if (empty($toDiscussionId))
-                throw new Exception('接收讨论组 Id 不能为空');
+                throw new MessageException('接收讨论组 Id 不能为空');
             if (empty($objectName))
-                throw new Exception('消息类型 不能为空');
+                throw new MessageException('消息类型 不能为空');
             if (empty($content))
-                throw new Exception('发送消息内容 不能为空');
+                throw new MessageException('发送消息内容 不能为空');
 
             $params = [
                 'fromUserId'     => $fromUserId,
@@ -189,10 +189,10 @@ class RongMessage extends Rongcloud
             $paramsString = http_build_query($params);
             $ret = $this->curl('/message/discussion/publish', $paramsString);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new MessageException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
+        } catch (MessageException $e) {
             print_r($e->getMessage());
         }
     }
@@ -214,13 +214,13 @@ class RongMessage extends Rongcloud
     {
         try {
             if (empty($fromUserId))
-                throw new Exception('发送人用户 Id 不能为空');
+                throw new MessageException('发送人用户 Id 不能为空');
             if (empty($toUserId))
-                throw new Exception('接收用户 Id 不能为空');
+                throw new MessageException('接收用户 Id 不能为空');
             if (empty($objectName))
-                throw new Exception('消息类型 不能为空');
+                throw new MessageException('消息类型 不能为空');
             if (empty($content))
-                throw new Exception('发送消息内容 不能为空');
+                throw new MessageException('发送消息内容 不能为空');
 
             $params = [
                 'fromUserId'  => $fromUserId,
@@ -233,10 +233,10 @@ class RongMessage extends Rongcloud
 
             $ret = $this->curl('/message/system/publish', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new MessageException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
+        } catch (MessageException $e) {
             print_r($e->getMessage());
         }
     }
@@ -255,11 +255,11 @@ class RongMessage extends Rongcloud
     {
         try {
             if (empty($fromUserId))
-                throw new Exception('发送人用户 Id 不能为空');
+                throw new MessageException('发送人用户 Id 不能为空');
             if (empty($objectName))
-                throw new Exception('消息类型不能为空');
+                throw new MessageException('消息类型不能为空');
             if (empty($content))
-                throw new Exception('发送消息内容不能为空');
+                throw new MessageException('发送消息内容不能为空');
             $ret = $this->curl(
                 '/message/broadcast',
                 [
@@ -269,10 +269,10 @@ class RongMessage extends Rongcloud
                 ]
             );
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new MessageException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
+        } catch (MessageException $e) {
             print_r($e->getMessage());
         }
     }
@@ -289,13 +289,13 @@ class RongMessage extends Rongcloud
     {
         try {
             if (empty($date))
-                throw new Exception('时间不能为空');
+                throw new MessageException('时间不能为空');
             $ret = $this->curl('/message/history', ['date' => $date]);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new MessageException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
+        } catch (MessageException $e) {
             print_r($e->getMessage());
         }
     }
@@ -312,13 +312,13 @@ class RongMessage extends Rongcloud
     {
         try {
             if (empty($date))
-                throw new Exception('时间 不能为空');
+                throw new MessageException('时间 不能为空');
             $ret = $this->curl('/message/history/delete', ['date' => $date]);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new MessageException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
+        } catch (MessageException $e) {
             print_r($e->getMessage());
         }
     }
