@@ -14,6 +14,7 @@
 
 namespace Kollway\EasyRongcloud;
 
+use Kollway\EasyRongcloud\Exceptions\BaseException;
 use Kollway\EasyRongcloud\Exceptions\UserException;
 
 class RongSetting extends Rongcloud
@@ -27,14 +28,14 @@ class RongSetting extends Rongcloud
     public function wordfilterAdd($word) {
         try{
             if(empty($word))
-                throw new Exception('敏感词不能为空');
+                throw new BaseException('敏感词不能为空');
             $params['word'] = $word;
             $ret = $this->curl('/wordfilter/add',$params);
             if(empty($ret))
-                throw new Exception('请求失败');
+                throw new BaseException('请求失败');
             return $ret;
-        }catch (Exception $e) {
-            print_r($e->getMessage());
+        }catch (BaseException $e) {
+            throw new BaseException($e->getMessage());
         }
     }
 
@@ -47,14 +48,14 @@ class RongSetting extends Rongcloud
     public function wordfilterDelete($word) {
         try{
             if(empty($word))
-                throw new Exception('敏感词不能为空');
+                throw new BaseException('敏感词不能为空');
             $params['word'] = $word;
             $ret = $this->curl('/wordfilter/delete',$params);
             if(empty($ret))
-                throw new Exception('请求失败');
+                throw new BaseException('请求失败');
             return $ret;
-        }catch (Exception $e) {
-            print_r($e->getMessage());
+        }catch (BaseException $e) {
+            throw new BaseException($e->getMessage());
         }
     }
     /**
@@ -66,10 +67,10 @@ class RongSetting extends Rongcloud
         try{
             $ret = $this->curl('/wordfilter/list',array());
             if(empty($ret))
-                throw new Exception('请求失败');
+                throw new BaseException('请求失败');
             return $ret;
-        }catch (Exception $e) {
-            print_r($e->getMessage());
+        }catch (BaseException $e) {
+            throw new BaseException($e->getMessage());
         }
     }
 }

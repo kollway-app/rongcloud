@@ -58,7 +58,7 @@ class RongMessage extends Rongcloud
 
             return $ret;
         } catch (MessageException $e) {
-            print_r($e->getMessage());
+            throw new MessageException($e->getMessage());
         }
     }
 
@@ -149,7 +149,7 @@ class RongMessage extends Rongcloud
 
             return $ret;
         } catch (MessageException $e) {
-            print_r($e->getMessage());
+            throw new MessageException($e->getMessage());
         }
     }
 
@@ -193,7 +193,7 @@ class RongMessage extends Rongcloud
 
             return $ret;
         } catch (MessageException $e) {
-            print_r($e->getMessage());
+            throw new MessageException($e->getMessage());
         }
     }
 
@@ -237,7 +237,7 @@ class RongMessage extends Rongcloud
 
             return $ret;
         } catch (MessageException $e) {
-            print_r($e->getMessage());
+            throw new MessageException($e->getMessage());
         }
     }
 
@@ -273,7 +273,7 @@ class RongMessage extends Rongcloud
 
             return $ret;
         } catch (MessageException $e) {
-            print_r($e->getMessage());
+            throw new MessageException($e->getMessage());
         }
     }
 
@@ -296,7 +296,7 @@ class RongMessage extends Rongcloud
 
             return $ret;
         } catch (MessageException $e) {
-            print_r($e->getMessage());
+            throw new MessageException($e->getMessage());
         }
     }
 
@@ -319,7 +319,7 @@ class RongMessage extends Rongcloud
 
             return $ret;
         } catch (MessageException $e) {
-            print_r($e->getMessage());
+            throw new MessageException($e->getMessage());
         }
     }
 }

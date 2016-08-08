@@ -122,14 +122,14 @@ class RongUser extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new UserException('用户 Id 不能为空');
             $ret = $this->curl('/user/checkOnline', ['userId' => $userId]);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new UserException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
-            print_r($e->getMessage());
+        } catch (UserException $e) {
+            throw new UserException($e->getMessage());
         }
     }
 
@@ -147,16 +147,16 @@ class RongUser extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new UserException('用户 Id 不能为空');
             if (empty($minute))
-                throw new Exception('封禁时长不能为空');
+                throw new UserException('封禁时长不能为空');
             $ret = $this->curl('/user/block', ['userId' => $userId, 'minute' => $minute]);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new UserException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
-            print_r($e->getMessage());
+        } catch (UserException $e) {
+            throw new UserException($e->getMessage());
         }
     }
 
@@ -173,14 +173,14 @@ class RongUser extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new UserException('用户 Id 不能为空');
             $ret = $this->curl('/user/unblock', ['userId' => $userId]);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new UserException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
-            print_r($e->getMessage());
+        } catch (UserException $e) {
+            throw new UserException($e->getMessage());
         }
     }
 
@@ -194,11 +194,11 @@ class RongUser extends Rongcloud
         try {
             $ret = $this->curl('/user/block/query', '');
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new UserException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
-            print_r($e->getMessage());
+        } catch (UserException $e) {
+            throw new UserException($e->getMessage());
         }
     }
 
@@ -216,9 +216,9 @@ class RongUser extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new UserException('用户 Id 不能为空');
             if (empty($blackUserId))
-                throw new Exception('被加黑的用户 Id 不能为空');
+                throw new UserException('被加黑的用户 Id 不能为空');
 
             $params = [
                 'userId'      => $userId,
@@ -227,11 +227,11 @@ class RongUser extends Rongcloud
 
             $ret = $this->curl('/user/blacklist/add', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new UserException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
-            print_r($e->getMessage());
+        } catch (UserException $e) {
+            throw new UserException($e->getMessage());
         }
     }
 
@@ -248,14 +248,14 @@ class RongUser extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new UserException('用户 Id 不能为空');
             $ret = $this->curl('/user/blacklist/query', ['userId' => $userId]);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new UserException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
-            print_r($e->getMessage());
+        } catch (UserException $e) {
+            throw new UserException($e->getMessage());
         }
     }
 
@@ -273,9 +273,9 @@ class RongUser extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new UserException('用户 Id 不能为空');
             if (empty($blackUserId))
-                throw new Exception('被移除的用户 Id 不能为空');
+                throw new UserException('被移除的用户 Id 不能为空');
 
             $params = [
                 'userId'      => $userId,
@@ -284,11 +284,11 @@ class RongUser extends Rongcloud
 
             $ret = $this->curl('/user/blacklist/remove', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new UserException('请求失败');
 
             return $ret;
-        } catch (Exception $e) {
-            print_r($e->getMessage());
+        } catch (UserException $e) {
+            throw new UserException($e->getMessage());
         }
 
     }
