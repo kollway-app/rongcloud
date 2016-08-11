@@ -146,9 +146,9 @@ class RongGroup extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('被同步群信息的用户 Id 不能为空');
+                throw new GroupException('被同步群信息的用户 Id 不能为空');
             if (empty($data))
-                throw new Exception('该用户的群信息 不能为空');
+                throw new GroupException('该用户的群信息 不能为空');
             $arrKey = array_keys($data);
             $arrVal = array_values($data);
             $params = [
@@ -160,7 +160,7 @@ class RongGroup extends Rongcloud
 
             $ret = $this->curl('/group/sync', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new GroupException('请求失败');
 
             return $ret;
         } catch (Exception $e) {
@@ -181,13 +181,13 @@ class RongGroup extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('操作解散群的用户 Id 不能为空');
+                throw new GroupException('操作解散群的用户 Id 不能为空');
             if (empty($groupId))
-                throw new Exception('要解散的群 Id 不能为空');
+                throw new GroupException('要解散的群 Id 不能为空');
             $ret = $this->curl('/group/dismiss',
                 ['userId' => $userId, "groupId" => $groupId]);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new GroupException('请求失败');
 
             return $ret;
         } catch (Exception $e) {
@@ -209,17 +209,17 @@ class RongGroup extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new GroupException('用户 Id 不能为空');
             if (empty($groupId))
-                throw new Exception('群组 Id 不能为空');
+                throw new GroupException('群组 Id 不能为空');
             if (empty($minute))
-                throw new Exception('禁言时长 不能为空');
+                throw new GroupException('禁言时长 不能为空');
             $params['userId'] = $userId;
             $params['groupId'] = $groupId;
             $params['minute'] = $minute;
             $ret = $this->curl('/group/user/gag/add', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new GroupException('请求失败');
 
             return $ret;
         } catch (Exception $e) {
@@ -240,14 +240,14 @@ class RongGroup extends Rongcloud
     {
         try {
             if (empty($userId))
-                throw new Exception('用户 Id 不能为空');
+                throw new GroupException('用户 Id 不能为空');
             if (empty($groupId))
-                throw new Exception('群组 Id 不能为空');
+                throw new GroupException('群组 Id 不能为空');
             $params['userId'] = $userId;
             $params['groupId'] = $groupId;
             $ret = $this->curl('/group/user/gag/rollback', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new GroupException('请求失败');
 
             return $ret;
         } catch (Exception $e) {
@@ -267,11 +267,11 @@ class RongGroup extends Rongcloud
     {
         try {
             if (empty($groupId))
-                throw new Exception('群组 Id 不能为空');
+                throw new GroupException('群组 Id 不能为空');
             $params['groupId'] = $groupId;
             $ret = $this->curl('/group/user/gag/list', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new GroupException('请求失败');
 
             return $ret;
         } catch (Exception $e) {
@@ -287,11 +287,11 @@ class RongGroup extends Rongcloud
     public function groupUserList($groupId){
         try {
             if (empty($groupId))
-                throw new Exception('群组 Id 不能为空');
+                throw new GroupException('群组 Id 不能为空');
             $params['groupId'] = $groupId;
             $ret = $this->curl('/group/user/query', $params);
             if (empty($ret))
-                throw new Exception('请求失败');
+                throw new GroupException('请求失败');
 
             return $ret;
         } catch (Exception $e) {
